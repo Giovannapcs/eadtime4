@@ -1,6 +1,8 @@
 
 package br.iesb.meuprograma.apresentacao;
 
+import java.awt.Frame;
+
 public class JFramePrincipal extends javax.swing.JFrame {
 
     /**
@@ -48,7 +50,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuCadastro.setMnemonic('C');
         jMenuCadastro.setText("Cadastro");
 
-        jMenuItem1.setText("Processos...");
+        jMenuItem1.setText("Tramitar Processo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -106,6 +108,10 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+                JFrameTramitar jFrameTramitar = new JFrameTramitar();
+                jFrameTramitar.setVisible(true);
+                jFrameTramitar.setExtendedState(Frame.MAXIMIZED_BOTH);
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
