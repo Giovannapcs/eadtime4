@@ -1,6 +1,8 @@
 
 package br.iesb.meuprograma.apresentacao;
 
+import java.awt.Frame;
+
 public class JFramePrincipal extends javax.swing.JFrame {
 
     /**
@@ -24,6 +26,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemSair = new javax.swing.JMenuItem();
         jMenuCadastro = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuAjuda = new javax.swing.JMenu();
         jMenuItemSobre = new javax.swing.JMenuItem();
 
@@ -47,13 +50,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuCadastro.setMnemonic('C');
         jMenuCadastro.setText("Cadastro");
 
-        jMenuItem1.setText("Processos...");
+        jMenuItem1.setText("Tramitar Processo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         jMenuCadastro.add(jMenuItem1);
+
+        jMenuItem2.setText("Pesquisar Proceso");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItem2);
 
         jMenuBarPrincipal.add(jMenuCadastro);
 
@@ -97,15 +108,56 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemSairActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-JDialogCadastroProcesso dialogo = new JDialogCadastroProcesso (this, true);
-dialogo.setVisible (true);
+                JFrameTramitar jFrameTramitar = new JFrameTramitar();
+                jFrameTramitar.setVisible(true);
+                jFrameTramitar.setExtendedState(Frame.MAXIMIZED_BOTH);
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        FrmPesquisarProcesso obj = new FrmPesquisarProcesso();
+       
+          obj.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+        public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FrmPesquisarProcesso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FrmPesquisarProcesso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FrmPesquisarProcesso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FrmPesquisarProcesso.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new JFramePrincipal().setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JMenu jMenuSistema;
