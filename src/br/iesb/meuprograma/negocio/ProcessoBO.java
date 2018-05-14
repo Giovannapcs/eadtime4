@@ -4,73 +4,63 @@
  * and open the template in the editor.
  */
 package br.iesb.meuprograma.negocio;
-
-import br.iesb.meuprograma.negocio.BO;
-import br.iesb.meuprograma.negocio.NegocioException;
-import br.iesb.meuprograma.entidades.Processo;
+import br.iesb.meuprograma.Entidades.Processo;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Giovanna
+ * @author AdrianaAguiar
  */
 public class ProcessoBO implements BO<Processo>{
-    
 
     @Override
     public void validar(Processo entidade) throws NegocioException {
-        if (!entidade.getAssunto().isEmpty()){
-        } else {
-            throw new NegocioException("Campo Assunto é obrigatório");
+        
+        if(entidade.getId()==0){
+            throw new NegocioException ("Campo ID é obrigatório.");
         }
-        if (entidade.getDescricao().isEmpty()){
-            throw new NegocioException("Campo Descrição é obrigatório");
+   /*     if (entidade.getDataProcesso()== null || entidade.getDataProcesso().isEmpty()) {
+            throw new NegocioException ("Campo Data Processo é obrigatório.");
         }
-        boolean isFile = entidade.getAnexo().isFile();
-        boolean exists = entidade.getAnexo().exists();
-        if (entidade.getAnexo()==null || !entidade.getAnexo().isFile()){
-            throw new NegocioException("É obrigatório adicionar um anexo.");
+        if (entidade.getAssunto()== null || entidade.getAssunto().isEmpty()) {
+            throw new NegocioException ("Campo Assunto é obrigatório.");
+        }
+        if (entidade.getDescricao()== null || entidade.getDescricao().isEmpty()) {
+            throw new NegocioException ("Campo Descrição é obrigatório.");
         }
     }
-
-    /**
-     *
-     * @param entidade
-     * @throws NegocioException
-     */
-    public void salvar(Processo entidade) throws NegocioException {
-        validar(entidade);
-        entidade.setNumeroProcesso(0);
-        consultar(entidade.getNumeroProcesso());
+    */
+   
     }
-
-    @Override
-    public void excluir(Processo entidade) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Processo consultar(int id) throws NegocioException {
-        return new Processo();
-    }
-
-    @Override
-    public List<Processo> listar() throws NegocioException {
-        return new ArrayList<Processo>();
-    }
-
     @Override
     public void inserir(Processo entidade) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    if(entidade.getId()==0){
+            throw new NegocioException ("Campo ID é obrigatório.");
+        }
     }
 
     @Override
     public void alterar(Processo entidade) throws NegocioException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    }
+
+    @Override
+    public void excluir(Processo entidade) throws NegocioException {
+        
+    }
+
+    @Override
+    public Processo consultar(int id) throws NegocioException {
+        Processo processo = new Processo ();
+        return processo;
+    }
+
+    @Override
+    public List<Processo> listar() throws NegocioException {
+        List<Processo> lista = new ArrayList<Processo>();
+        return lista;
     }
     
 }
-
-    
-
+ 

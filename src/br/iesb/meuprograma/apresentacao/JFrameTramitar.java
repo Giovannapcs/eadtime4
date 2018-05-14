@@ -5,6 +5,13 @@
  */
 package br.iesb.meuprograma.apresentacao;
 
+import br.iesb.meuprograma.Entidades.Tramites;
+import br.iesb.meuprograma.negocio.NegocioException;
+import br.iesb.meuprograma.negocio.TramitesBO;
+import java.util.HashSet;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Adriana Barroso
@@ -30,7 +37,7 @@ public class JFrameTramitar extends javax.swing.JFrame {
         btnadicionar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        JTtramites = new javax.swing.JTable();
         txtid = new javax.swing.JTextField();
         txtdtprocesso = new javax.swing.JTextField();
         btntramitar = new javax.swing.JButton();
@@ -47,10 +54,15 @@ public class JFrameTramitar extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnadicionar.setText("Adicionar");
+        btnadicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadicionarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("ID:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        JTtramites.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -61,7 +73,12 @@ public class JFrameTramitar extends javax.swing.JFrame {
                 "Item", "Unidade", "Ação"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        JTtramites.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTtramitesMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(JTtramites);
 
         btntramitar.setText("Tramitar");
         btntramitar.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +97,7 @@ public class JFrameTramitar extends javax.swing.JFrame {
 
         jLabel6.setText("Unidade de Destino:");
 
-        cmbunidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbunidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma unidade", "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Tramitar Processo");
@@ -174,6 +191,55 @@ public class JFrameTramitar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btntramitarActionPerformed
 
+    private void btnadicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadicionarActionPerformed
+        // TODO add your handling code here:
+        int i=0;
+        Tramites tramite= new Tramites();
+        tramite.setIdProcesso(txtid.getText());
+        tramite.setIdAssunto(txtassunto.getText());
+        tramite.setIdUnidade(cmbunidade.getSelectedIndex());
+        TramitesBO bo = new TramitesBO();
+        try{
+            
+               Boolean verifica=true;
+     while(JTtramites.getValueAt(i, 0)!=null){
+         if(JTtramites.getValueAt(i, 1)==cmbunidade.getSelectedItem()){
+             JOptionPane.showMessageDialog(null, "escolha uma unidade ainda não incluída!");
+             verifica=false;
+                    }   
+                    i+=1;
+               }                                            
+           if(verifica){ 
+                   bo.inserir(tramite);
+                    JOptionPane.showMessageDialog(rootPane, "Unidade incluída com sucesso!!!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    DefaultTableModel dtm = (DefaultTableModel)JTtramites.getModel();
+                   // Adiciona uma linha vazia na JTable
+                   dtm.addRow(new Object[]{null,null});
+                   JTtramites.setValueAt((i+1), i, 0);
+                   JTtramites.setValueAt(cmbunidade.getSelectedItem(), i, 1);
+                   JTtramites.setValueAt("Remover", i, 2);
+               }
+        }catch(NegocioException e){
+            JOptionPane.showMessageDialog(rootPane,e.getMessage() ,"Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+      
+    }//GEN-LAST:event_btnadicionarActionPerformed
+
+    
+    private void JTtramitesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTtramitesMouseClicked
+        // TODO add your handling code here:
+        if (JTtramites.getSelectedColumn()==2){
+            DefaultTableModel dtm = (DefaultTableModel)JTtramites.getModel();
+            if (JTtramites.getSelectedRow() >= 0){
+                dtm.removeRow(JTtramites.getSelectedRow());
+                JTtramites.setModel(dtm);
+            }else{
+                JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+            }
+
+        }    
+    }//GEN-LAST:event_JTtramitesMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -210,6 +276,7 @@ public class JFrameTramitar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTtramites;
     private javax.swing.JButton btnadicionar;
     private javax.swing.JButton btndesistir;
     private javax.swing.JButton btntramitar;
@@ -221,7 +288,6 @@ public class JFrameTramitar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtassunto;
     private javax.swing.JTextField txtdescricao;
     private javax.swing.JTextField txtdtprocesso;
