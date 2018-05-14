@@ -27,6 +27,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuCadastro = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItemcadastrarprocesos = new javax.swing.JMenuItem();
         jMenuAjuda = new javax.swing.JMenu();
         jMenuItemSobre = new javax.swing.JMenuItem();
 
@@ -65,6 +66,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenuCadastro.add(jMenuItem2);
+
+        jMenuItemcadastrarprocesos.setText("Cadastrar Processos");
+        jMenuItemcadastrarprocesos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemcadastrarprocesosActionPerformed(evt);
+            }
+        });
+        jMenuCadastro.add(jMenuItemcadastrarprocesos);
 
         jMenuBarPrincipal.add(jMenuCadastro);
 
@@ -121,6 +130,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
           obj.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItemcadastrarprocesosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemcadastrarprocesosActionPerformed
+       JDialogCadastroProcesso jDialogCadastroProcesso = new JDialogCadastroProcesso(new javax.swing.JFrame(), true);
+        jDialogCadastroProcesso.setVisible(true);
+    }//GEN-LAST:event_jMenuItemcadastrarprocesosActionPerformed
+
         public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -160,6 +174,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemSair;
     private javax.swing.JMenuItem jMenuItemSobre;
+    private javax.swing.JMenuItem jMenuItemcadastrarprocesos;
     private javax.swing.JMenu jMenuSistema;
     // End of variables declaration//GEN-END:variables
 }
